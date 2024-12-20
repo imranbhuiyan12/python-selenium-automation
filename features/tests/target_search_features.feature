@@ -4,13 +4,19 @@ Feature: Tests for search
   Scenario: User can search for a product
     Given Open target main page
     When Search for tea
-    Then Verify search results shown
+    Then Verify search results shown tea
 
 
-Scenario: “Your cart is empty” message is shown
-  Given Open target main page
-  When Click on Cart Icon
-  Then Verify “Your cart is empty” message is shown
+  Scenario: User can search for a coffee
+    Given Open target main page
+    When Search for coffee
+    Then Verify search results shown coffee
+
+Scenario: User can search for a mug
+    Given Open target main page
+    When Search for mug
+    Then Verify search results shown mug
+
 
 Scenario: Sign In form opened
   Given Open target main page
@@ -18,3 +24,12 @@ Scenario: Sign In form opened
   When Nav bar sign button
   Then Verify Sign In form opened
 
+  Scenario Outline: User can search for a product
+    Given Open target main page
+    When Search for <product>
+    Then Verify search results shown  <product>
+    Examples:
+    |product    |
+    |coffee     |
+    |tea        |
+    |mug        |
