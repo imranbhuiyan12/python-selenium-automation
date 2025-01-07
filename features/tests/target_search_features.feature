@@ -33,3 +33,20 @@ Scenario: Sign In form opened
     |coffee     |
     |tea        |
     |mug        |
+
+
+
+  Scenario:  Select colors
+    Given Open target page A-54551690
+    Then Verify that color selected by user
+
+
+
+
+
+  Scenario:  Create a test case
+    Given  Open target main page
+    Then   Search for product iphone
+    Then   Verify product name and image
+
+

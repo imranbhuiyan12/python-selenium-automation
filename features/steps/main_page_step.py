@@ -44,6 +44,20 @@ def verify_header_links_amount(context, expected_amount):
 #     sleep(5)
 
 
+@given ('Open target page A-{product_id}')
+def open_target_page(context, product_id):
+    context.driver.get(f"https://www.target.com/p/A-{product_id}")
+    sleep(10)
+
+
+
+@then('Search for product {product}')
+def search_product(context, product):
+    context.driver.find_element(By.ID, 'search').send_keys(product)
+    context.driver.find_element(By.XPATH, "//button[@data-test='@web/Search/SearchButton']").click()
+    sleep(10)
+
+
 
 
 

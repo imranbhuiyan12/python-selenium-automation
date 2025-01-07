@@ -9,3 +9,6 @@ def verify_cart(context):
     actual_result = context.driver.find_element(By.CSS_SELECTOR,"[data-test='boxEmptyMsg']").text
     assert expected_result == actual_result, f"expected {expected_result} in Actual {actual_result}"
     print("test passed")
+
+
+
