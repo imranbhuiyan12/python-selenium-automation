@@ -5,18 +5,19 @@ from time import sleep
 
 @given('Open target main page')
 def open_main(context):
-    context.driver.get("https://target.com/")
+    context.app.main_page.open_main()
 
-@when('Search for {search_word}')
-def search_product(context, search_word):
-    context.driver.find_element(By.ID, 'search').send_keys(search_word)
-    context.driver.find_element(By.XPATH, "//button[@data-test='@web/Search/SearchButton']").click()
+
+@when('Search for {product}')
+def search_product(context, product):
+    context.app.header.search_product(product)
     sleep(10)
 
 
 @when('Click on Cart Icon')
 def click_cart(context):
-    context.driver.find_element(By.CSS_SELECTOR,"[data-test='@web/CartIcon']").text()
+    context.app.header.click_cart()
+    sleep(10)
 
 @then('Verify header links are shown')
 def verify_header_links(context):

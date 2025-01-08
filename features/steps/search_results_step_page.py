@@ -65,10 +65,13 @@ def verify_product(context):
 
 @then('Verify search results shown {product}')
 def verify_search_results(context, product):
-    actual_result = context.driver.find_element(By.XPATH, "//div[@data-test='resultsHeading']").text
-    assert product in actual_result, f'Expected text {product} not in actual {actual_result}'
+    context.app.search_result_page.verify_search_result(product)
 
+#cart features
 
+@then('Verify “Your cart is empty” message is shown')
+def verify_cart(context):
+    context.app.cart_page.verify_cart()
 
 
 @then('Verify that color selected by user')
