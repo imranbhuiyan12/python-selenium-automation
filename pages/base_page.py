@@ -26,6 +26,28 @@ class Basepage:
         self.driver.find_element(*locator).send_keys(text)
 
 
+    def get_current_window_handle(self):
+        return self.driver.current_window_handle
+
+    def switch_to_new_window(self):
+        self.wait.until(EC.new_window_is_opened)
+        all_windows = self.driver.window_handles
+        print(f"All windows: ",all_windows)
+        self.driver.switch_to.window(all_windows[1])
+        print('Current window ', self.driver.current_window_handle)
+
+
+    def switch_to_windows_by_id(self, window_id):
+        self.driver.switch_to.window(window_id)
+        print('Current window ', self.driver.current_window_handle)
+
+
+
+
+
+
+
+
 
     def wait_for_element_visible(self, *locator):
         return self.wait.until(EC.visibility_of_element_located(locator),
@@ -59,6 +81,10 @@ class Basepage:
     def verify_partial_url(self, expected_url, *locator):
         url = self.driver.current_url
         assert expected_url in url, f"expected {expected_url} not in {url}"
+
+
+    def close(self):
+        self.driver.close()
 
 
 # page = Basepage

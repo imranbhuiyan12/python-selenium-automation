@@ -10,7 +10,7 @@ from selenium.webdriver.support import expected_conditions as EC
 # PRODUCT_NAME = (By.CSS_SELECTOR, "[data-test='content-wrapper'] [data-test='orderPickupButton']")
 # CONFIRM_BUTTON = (By.CSS_SELECTOR,"[data-test='content-wrapper'] a[href='/cart']")
 # CART_SUMMARY = (By.XPATH, "//div[./span[contains(text(), 'subtotal')]]")
-STORE_PRODUCT_NAME = (By.CSS_SELECTOR, "[data-test='content-wrapper'] h4")
+# STORE_PRODUCT_NAME = (By.CSS_SELECTOR, "[data-test='content-wrapper'] h4")
 VERIFY_PRODUCT_NAME = (By.CSS_SELECTOR, "[data-test='cartItem-title']")
 COLOR_OPTION = (By.CSS_SELECTOR, "div[aria-label='Carousel'] li img")
 COLOR_SELECT = (By.CSS_SELECTOR, "[data-test='@web/VariationComponent'] div")
@@ -38,11 +38,13 @@ def store_product_name(context):
     # sleep(5)
     context.app.cart_page.store_product_name()
 
-# @then('Store product name')
-# def product_name(context):
-#     # context.product = context.driver.find_element(*STORE_PRODUCT_NAME).text
-#     # print(f"Product name: {context.product}")
-#     context.app.cart_page.product_name()
+@then('Store product name')
+def product_name(context):
+    # context.product = context.driver.find_element(*STORE_PRODUCT_NAME).text
+    # print(f"Product name: {context.product}")
+    # context.app.cart_page.product_name()
+    context.product_name = context.app.search_result_page.get_product_name()
+    print(f'Product stored: {context.product_name}')
 
 
 
@@ -61,10 +63,12 @@ def verify_cart_items(context, amount):
 
 @then('Verify product name')
 def verify_product(context):
-    actual_name = context.driver.find_element(*VERIFY_PRODUCT_NAME).text
-    print(f"Product name: {actual_name}")
-    print(f"Product name stored earlier:{context.product}")
-    assert context.product in actual_name, f"Expected {context.product } but got {actual_name}"
+    # actual_name = context.driver.find_element(*VERIFY_PRODUCT_NAME).text
+    # print(f"Product name: {actual_name}")
+    # print(f"Product name stored earlier:{context.product}")
+    # assert context.product in actual_name, f"Expected {context.product } but got {actual_name}"
+    # context.app.cart_page.verify_product(context.product)
+    context.app.cart_page.verify_product(context.product_name)
 
 
 
